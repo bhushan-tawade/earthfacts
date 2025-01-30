@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Earth Facts</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #0d0d0d;
+        overflow: hidden;
+        color: #fff;
+      }
+
+      .container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px #00e6e6;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .fact-card {
+        background: rgba(0, 0, 0, 0.8);
+        border: 2px solid #00e6e6;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 15px #00e6e6;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+
+      .fact-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 1em;
+        color: #fff;
+        background: linear-gradient(90deg, #00e6e6, #ff00ff);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 0px 20px #00e6e6;
+      }
+
+      .fact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌍 Fun Facts About Earth</h1>
+      <div id="fact-container" class="fact-container"></div>
+      <button id="generate-fact" class="btn">Generate Fun Facts</button>
+    </div>
+    <script>
+      const facts = [
+        {
+          fact: "Earth's Age",
+          description: "Earth is approximately 4.5 billion years old.",
+        },
+        {
+          fact: "Water Coverage",
+          description: "71% of Earth's surface is covered with water.",
+        },
+        {
+          fact: "Unique Atmosphere",
+          description: "Earth's atmosphere contains 21% oxygen.",
+        },
+        {
+          fact: "Tectonic Plates",
+          description: "Earth's crust is divided into several moving plates.",
+        },
+        {
+          fact: "Moon's Influence",
+          description:
+            "The Moon's gravity affects Earth's tides and climate stability.",
+        },
+        {
+          fact: "Diverse Ecosystems",
+          description: "Earth supports millions of unique ecosystems.",
+        },
+        {
+          fact: "Magnetic Field",
+          description: "Earth's iron core creates a protective magnetic field.",
+        },
+        {
+          fact: "Rotation Speed",
+          description: "Earth rotates at 1,670 km/h at the equator.",
+        },
+        {
+          fact: "Life's Diversity",
+          description: "Earth hosts millions of species, many undiscovered.",
+        },
+        {
+          fact: "Goldilocks Zone",
+          description: "Earth is perfectly placed for liquid water to exist.",
+        },
+      ];
+
+      document.getElementById("generate-fact").addEventListener("click", () => {
+        const factContainer = document.getElementById("fact-container");
+        factContainer.innerHTML = "";
+
+        let shuffledFacts = facts.sort(() => 0.5 - Math.random()).slice(0, 4);
+        shuffledFacts.forEach((fact) => {
+          const factCard = document.createElement("div");
+          factCard.classList.add("fact-card", "show");
+          factCard.innerHTML = `<strong>${fact.fact}:</strong> ${fact.description}`;
+          factContainer.appendChild(factCard);
+        });
+      });
+    </script>
+  </body>
+</html>
